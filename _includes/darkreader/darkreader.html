@@ -1,4 +1,6 @@
+{%- assign _cachekey = site.data.variables.cachekeys.darkmode | default: site.data.variables.default.cachekeys.darkmode -%}
 <script>
+  const cacheKey = `{{site.url}}/{{_cachekey}}`;
   const changer = document.querySelector('#color-mode-changer');
 
   if (DarkReader) {
@@ -25,7 +27,7 @@
   function getColorMode() {
     const validModes = ['auto', 'dark', 'light'];
     try {
-      const mode = localStorage.getItem('color-mode') || 'auto';
+      const mode = localStorage.getItem(cacheKey) || 'auto';
       return validModes.includes(mode) ? mode : 'auto';
     } catch (error) {
       return 'auto';
@@ -36,15 +38,15 @@
     DarkReader.auto(false);
     switch (getColorMode()) {
       case 'light':
-        localStorage.setItem('color-mode', 'dark');
+        localStorage.setItem(cacheKey, 'dark');
         DarkReader.enable();
         break;
       case 'dark':
-        localStorage.setItem('color-mode', 'auto');
+        localStorage.setItem(cacheKey, 'auto');
         DarkReader.auto();
         break;
       case 'auto':
-        localStorage.setItem('color-mode', 'light');
+        localStorage.setItem(cacheKey, 'light');
         DarkReader.disable();
         break;
     }
