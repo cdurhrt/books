@@ -1,6 +1,6 @@
 {%- assign _cachekey = site.data.variables.cachekeys.darkmode | default: site.data.variables.default.cachekeys.darkmode -%}
 <script>
-  const cacheKey = `{{site.url}}{{site.baseurl | default: 'common'}}/{{_cachekey}}`;
+  const cacheKey = `{{site.baseurl | default: 'common'}}/{{_cachekey}}`;
   const changer = document.querySelector('#color-mode-changer');
 
   if (DarkReader) {
