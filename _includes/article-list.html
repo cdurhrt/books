@@ -64,6 +64,7 @@
                 {%- else -%}
                   {{ _article.excerpt | strip_html | strip | truncate: _excerpt_truncate }}
                 {%- endif -%}
+                ...
               </div>
             {%- endif -%}
             {%- if include.show_readmore -%}
